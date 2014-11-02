@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="svg.css" type="text/css"?>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="#fff" id="canvas_background" height="302" width="282" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect stroke="#000" id="svg_2" height="43" width="132.000003" y="196" x="46.5" stroke-width="1.5" fill="#fff"/>
+  <rect stroke="#000" id="svg_5" height="29.000001" width="101.999999" y="41.999999" x="47.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="#fff"/>
+  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="16" id="svg_6" y="65" x="158.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Object store</text>
+  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="16" id="svg_7" y="223" x="56.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Worker Process</text>
+  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="16" id="svg_8" y="62" x="56.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Data Chunk</text>
+  <rect stroke="#000" stroke-dasharray="5,5" id="svg_9" height="29.000001" width="101.999999" y="93.999999" x="47.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="#fff"/>
+  <rect stroke="#000" stroke-dasharray="5,5" id="svg_10" height="29.000001" width="101.999999" y="144.999999" x="47.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="#fff"/>
+  <text style="cursor: move;" xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="16" id="svg_12" y="111" x="158.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Local store</text>
+  <text style="cursor: move;" xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="16" id="svg_13" y="159" x="158.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Disk cache</text>
+  <path transform="rotate(90 100.58096313476562,82.87562561035158) " id="svg_15" d="m97.709869,92.941696c-0.677399,-0.559799 -0.588318,-0.898819 1.057434,-4.036835c0.830566,-1.584549 1.510529,-2.92717 1.510529,-2.983566c0,-0.056076 -2.294312,-0.102219 -5.098755,-0.102219l-5.098114,0l0,-2.967865l0,-2.967865l5.13913,0c3.961853,0 5.094269,-0.089401 4.944946,-0.39061c-0.106384,-0.214691 -0.831207,-1.639664 -1.610504,-3.166855c-1.469513,-2.878784 -1.468872,-3.650711 0.002563,-3.890076c0.731873,-0.119202 12.132294,9.030487 12.523865,10.051712c-3.79715,3.646545 -8.335785,7.463562 -12.516815,10.829086c-0.2211,0 -0.60498,-0.168549 -0.854279,-0.374908z" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#fff"/>
+  <path transform="rotate(90 100.58096313476561,133.8756256103516) " id="svg_16" d="m97.709869,143.941711c-0.677399,-0.559814 -0.588318,-0.898834 1.057434,-4.03685c0.830566,-1.584549 1.510529,-2.92717 1.510529,-2.983551c0,-0.056091 -2.294312,-0.102234 -5.098755,-0.102234l-5.098114,0l0,-2.967865l0,-2.967865l5.13913,0c3.961861,0 5.094269,-0.089401 4.944946,-0.39061c-0.106392,-0.214676 -0.831207,-1.639664 -1.610512,-3.166855c-1.469505,-2.878784 -1.468864,-3.650711 0.002571,-3.890076c0.731873,-0.119209 12.132294,9.030487 12.523865,10.051712c-3.79715,3.646545 -8.335785,7.463562 -12.516815,10.829071c-0.2211,0 -0.60498,-0.168518 -0.854279,-0.374878z" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#fff"/>
+  <path transform="rotate(90 100.58096313476561,184.8756256103516) " id="svg_17" d="m97.709869,194.941711c-0.677399,-0.559814 -0.588318,-0.898834 1.057434,-4.03685c0.830566,-1.584549 1.510529,-2.92717 1.510529,-2.983551c0,-0.056091 -2.294312,-0.102234 -5.098755,-0.102234l-5.098114,0l0,-2.967865l0,-2.967865l5.13913,0c3.961861,0 5.094269,-0.089401 4.944946,-0.39061c-0.106392,-0.214676 -0.831207,-1.639664 -1.610512,-3.166855c-1.469505,-2.878784 -1.468864,-3.650711 0.002571,-3.890076c0.731873,-0.119217 12.132294,9.030487 12.523865,10.051712c-3.79715,3.646545 -8.335785,7.463562 -12.516815,10.829071c-0.2211,0 -0.60498,-0.168518 -0.854279,-0.374878z" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#fff"/>
+ </g>
+</svg>

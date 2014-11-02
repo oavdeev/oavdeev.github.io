@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>RICON 2014</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+<style>
+.blue {
+	color: #75ADF3;
+}
+
+.red {
+	color: #F3AD75;
+}
+
+.reveal em {
+	font-style: normal;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+	font-family: 'Lato', sans-serif;
+	font-weight: 700;
+}
+
+.reveal {
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+}
+
+svg rect {
+	stroke: white;
+}
+
+
+</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+<section>
+<h1>Scale Down!</h1>
+<h3>Making High Performance Analytics Easy</h3>
+<p>Oleg Avdeev, AdRoll</p>
+</section>
+
+<section>
+<h2><img style="height: 45px; border: none; margin: 0 0 -1px 0;" src="adroll.png"></h2>
+<ul>
+<li>Ad tech (retargeting)</li>
+<li>Self service advertising</li>
+<li>Real Time Bidding</li>
+</ul>
+</section>
+
+<section>
+<h2>Real Time Bidding</h2>
+<object type="image/svg+xml" data="rtb.svg">
+</object>
+</section>
+
+<section>
+<h2>Our data</h2>
+<ul>
+<li>100TB+/day raw data per day</li>
+<li>50B+ events logged/day</li>
+<li>4PB total (compressed)</li>
+</ul>
+</section>
+
+<section>
+<h2>Analytics?</h2>
+<ul>
+<li>Complex aggregate queries</li>
+<li>(projections, GROUP BYs)</li>
+<li>Basically OLAP cubes</li>
+</ul>
+</section>
+
+<section>
+<h2>Nice things to have</h2>
+<ul>
+<li>Interactive performance</li>
+<li>SQL support</li>
+<li>Low maintenance</li>
+</ul>
+</section>
+
+<section>
+
+<p>Example query:
+
+number of events by customer and operating system over [2.3 billion] log lines
+
+<pre><code>
+select customer_id, operating_system, sum(number_of_events)
+from somecube
+where day >= '2014-10-05'
+group by 1,2;
+
+Total runtime: 27663.113 ms
+</code></pre>
+
+<pre><code>
+  customer_id | operating_system |     sum
+--------------+------------------+-------------
+ 7GBYHRBJVTCR | Android          |      248131
+ YXFXRLRIRZIE | Iphone           |     3516317
+ J5EKHBAOJAXK | MacOSX           |     4294402
+ D2CZJNTGA2QA | Windows          |   126877412
+ XOF5RCADNDXU | Other            |          24
+ P2DPTAKDSAUN | Android          |         264
+ 2OBHFTULELVG | Iphone           |      840240
+ NHA3LFIKFWMV | Android          |       67211
+ 3UBCBXTEINAO | Windows          |     7992150
+ BAFXFKGKFTZM | Windows          |         805
+ RUFZDX2MRH5Q | Ipad             |     4791703
+ SYEXPLOCZF6R | MacOSX           |   171675428
+ GCH7PDZFI2YY | Iphone           |       36670
+ IVDBDVCDYMH5 | Linux            |     9300528
+ RCESTQRHFFNS | Linux            |      161949
+ 4DBI32XAXIYP | Windows          |    37151360
+ 6PBKFJAI2ESL | Android          |     1699090
+ 6DFOHM4OPBZ7 | MacOSX           |    73905914
+ TPFNZPTOBPLO | Ipad             |      214512
+ EPGXDP2HBUF6 | Other            |          24
+ U6BAFXGF7VPT | Ipad             |     4369249
+ </code></pre>
+
+</section>
+
+
+<section>
+<h2>Massively scalable solution!</h2>
+<h3>How many servers do we need?</h3>
+<h4>100? 200?</h4>
+</section>
+
+<section>
+<h3 class="fragment1" data-fragment-index="1">Looks like 1-3 servers is enough!</h3>
+<p class="fragment1"  data-fragment-index="1">at least for quite a while</p>
+</section>
+
+<section>
+<h2>Focusing on horizontal scalability?</h2>
+<h4 class="fragment">Large distributed systems are not easy!</h4>
+<ol>
+<li class="fragment">Performance cost</li>
+<li class="fragment">Operational cost</li>
+<li class="fragment">Complexity cost</li>
+</ol>
+</section>
+
+<section>
+<h2>This is year 2014</h2>
+<ul>
+<li class="fragment">powerful hardware getting cheaper</li>
+<li class="fragment">1TB of RAM + 2TB SSD + 64 cores is ~$4K/mo</li>
+</ul>
+</section>
+
+<section>
+<h2>How big is your data</h2>
+<p>In information-theoretical sense..</p>
+<ul>
+<li class="fragment">if it is user generated..</li>
+<li class="fragment">7B people can only produce so much entropy</li>
+</ul>
+</section>
+
+
+<section>
+<h2>DeliRoll</h2>
+<ul>
+<li>Focus on data compression</li>
+<li>Column based store</li>
+<li>Mostly in-memory</li>
+<li>Bulk load only</li>
+</ul>
+</section>
+
+<section>
+<h2>Data compression</h2>
+</section>
+
+<section>
+<h3>Data compression</h3>
+<h4>Normalize data</h4>
+<object type="image/svg+xml" data="rows.svg">
+</object>
+</section>
+
+<section>
+<h3>Data compression</h3>
+<h4>Normalize data</h4>
+<object type="image/svg+xml" data="rows_normalized1.svg">
+</object>
+</section>
+
+<section>
+<h3>Data compression</h3>
+<h4>Normalize data</h4>
+<object type="image/svg+xml" data="rows_normalized2.svg">
+</object>
+</section>
+
+<section>
+<h3>Data compression</h3>
+<h4>Dimensions vs metrics</h4>
+<object type="image/svg+xml" data="rows_normalized.svg">
+</object>
+</section>
+
+<section>
+<h3>Data compression</h3>
+<h4>Dimensions vs metrics</h4>
+<object type="image/svg+xml" data="rows_metrics.svg">
+</object>
+</section>
+
+<section>
+<h3>Data compression</h3>
+<h4>Sort rows</h4>
+<object type="image/svg+xml" data="rows_sorted.svg">
+</object>
+</section>
+
+
+<section>
+<h3>Data compression</h3>
+<h4>Index, store by column</h4>
+<object type="image/svg+xml" data="rows_by_column.svg">
+</object>
+</section>
+
+<section>
+
+<p>VLE, RLE, Dictionary-encode, Delta-encode <h3>EVERYTHING</b></p>
+
+<aside class="notes">
+    So this is kind of how it works. There's also special optimization for very-low
+    cardinality fields and flags, plus there's a compressed list of all cookies stored 
+    for every row in a separate file (we need these for user list queries).
+</aside>
+</section>
+
+<section>
+<h2>Data ingest pipeline</h2>
+<object type="image/svg+xml" data="pipeline.svg">
+</object>
+</section>
+
+<section>
+<h2>Numbers</h2>
+<ul>
+<li>4 trillion log lines in the biggest table <span class="blue">(4 GB/day, 1 bit/logline)</span></li>
+<li>3 servers 256G of RAM each </li>
+<li>Less than 10TB of data</li>
+</ul>
+</section>
+
+<section>
+<h2>Running a query</h2>
+</section>
+
+<section>
+<h3> Query execution stack</h3>
+<object type="image/svg+xml" data="query_stack.svg">
+</object>
+</section>
+
+
+<section>
+
+<h2> Query execution </h2>
+
+  SQL Query
+
+<pre><code>
+select sum(media_cost) from deliroll_adcube where day='2014-09-01' and browser='Ipad';
+</code></pre>
+</section>
+
+<section>
+
+<h2> Query execution </h2>
+  SQL Query -> DeliRoll Query
+
+<pre><code>
+fold f_browser_ipad*m_cost where f_browser_ipad == 1 groupby day range 2014-09-01
+</code>
+</pre>
+</section>
+<section>
+<h2> Query execution </h2>
+  SQL Query -> DeliRoll Query -> Python code
+
+<pre><code data-trim contenteditable>
+from numba import u1, u2, u4, u8, f8, void, jit
+
+@jit(u4(u1[:],u8[:],u1[:],u2[:],u1[:]), nopython=True, warn=False):
+def qfun(_flags,_out,_indptr,_indices,_m_cost):
+    _m_cost_idx = u4(0)
+    _m_cost_row = u4(0)
+    _m_cost_val = u8(0)
+    _matches = 0
+
+    ...
+   # Loop over all rows
+
+    while (_indptr_idx < _indptr_len):
+        while (True):
+            _byte = _indptr[_indptr_idx]
+            _indptr_val = 0
+            if (_byte & 1):
+                _indptr_row += (_byte >> 1) + 1
+                _indptr_idx += 1
+            else:
+                _cont = _byte & 2
+                _shift = 6
+                _indptr_val = _byte >> u8(2)
+                _indptr_idx += 1
+                while (_cont):
+                    _byte = _indptr[_indptr_idx]
+                    _indptr_val |= (_byte >> u8(1)) << _shift
+                    _shift += 7
+                    _cont = _byte & 1
+
+
+</code>
+</pre>
+</section>
+				<section>
+
+<h2> Query execution</h2>
+  SQL Query -> DeliRoll Query -> Python code -> Native code via LLVM
+
+<pre><code data-trim contenteditable>
+...
+"while_body_32:20":                            ; preds = %"while_body_32:20.preheader", %"while_body_32:20"
+  %lsr.iv = phi i8* [ %scevgep, %"while_body_32:20.preheader" ], [ %58, %"while_body_32:20" ]
+  %_indptr_idx_618 = phi i64 [ %_indptr_idx_6, %"while_body_32:20" ], [ %_indptr_idx_616, %"while_body_32:20.preheader" ]
+  %47 = phi i64 [ %55, %"while_body_32:20" ], [ 6, %"while_body_32:20.preheader" ]
+  %var__indptr_val.0.load51017 = phi i64 [ %52, %"while_body_32:20" ], [ %42, %"while_body_32:20.preheader" ]
+  %lsr.iv1 = bitcast i8* %lsr.iv to i1*
+  %48 = load i8* %lsr.iv, align 1, !tbaa !2
+  %49 = zext i8 %48 to i64
+  %50 = lshr i64 %49, 1
+  %51 = shl i64 %50, %47
+  %52 = or i64 %51, %var__indptr_val.0.load51017
+  %53 = uitofp i64 %47 to double
+  %54 = fadd double %53, 7.000000e+00
+  %55 = fptoui double %54 to i64
+...
+</code></pre>
+
+Compiled using Numba on the fly
+
+</section>
+
+<section>
+<h2> Query execution</h2>
+<ul>
+<li>Almost always goes for full scan</li>
+<li>Tens or hundreds of millions rows/sec/core</li>
+<li>Seconds to minutes per query</li>
+</ul>
+</section>
+
+<section>
+<h2>Distributed version</h2>
+<h4 class="fragment">Basically, free lunch!</h4>
+</section>
+
+<section>
+<h2>How to scale this?</h2>
+<h3 class="fragment">just split data into chunks</h3>
+<p class="fragment">data is mostly time series anyway</p>
+</section>
+
+<section>
+<h2>Replication?</h2>
+<h3 class="fragment">don't care</h3>
+<p class="fragment">store chunks in S3/Swift, download on demand</p>
+</section>
+<section>
+<h2>Replication</h2>
+<div style="float: left; width: 400; margin-left:200px;">
+<object type="image/svg+xml" data="cache.svg">
+</object>
+</div>
+<div style="width: 400px; float: left;">
+<p>Treat it as just another level in cache hierarchy</p>
+</div>
+</section>
+
+<section>
+<h2>Replication</h2>
+<p>Location aware scheduler</p>
+<img src="cache1.png">
+</section>
+
+<section>
+<h2>Distributed part</h2>
+<object type="image/svg+xml" data="deliroll-elastic.svg">
+</object>
+</section>
+
+<section>
+<h2>Cloud friendly</h2>
+<ul>
+<li>Object storage to store data</li>
+<li>Spot instances for workers</li>
+<li>Adding/removing workers is handled gracefully (Erlang!)</li>
+<li>Using Hadoop clusters to compress data</li>
+</ul>
+</section>
+
+<section>
+<h2>Technology stack</h2>
+<ul>
+<li>Python</li>
+<li>Erlang</li>
+<li>C</li>
+<li>Java</li>
+<li class="fragment">30-40K LOC total</li>
+</ul>
+</section>
+
+<section>
+<h2>Erlang!</h2>
+<object type="image/svg+xml" data="erlang-logo.svg">
+</object>
+<ul>
+<li>concurrency done right</li>
+<li>allows you to focus on important stuff</li>
+<li>think less about failure handling</li>
+<li>we use it a lot (e.g. all RTB is Erlang)</li>
+</ul>
+</section>
+
+<section>
+<h2>Wrap up: keep it simple</h2>
+<ul>
+<li>Focus on efficient data storage, not building a monster cluster</li>
+<li>Powerful hardware is cheap these days</li>
+<li>Lots of corners to cut for analytics system</li>
+<li>Don't overcomplicate things</li>
+<li>Easy to scale when you need to</li>
+</ul>
+</section>
+
+<section>
+<h2>Questions?</h2>
+<div style="padding-top:150px; width: 600px; margin-left: auto;">
+<div style="padding-right: 50px; float:left;">
+<a href="mailto:oleg@usrlib.com">oleg@usrlib.com</a>
+<p>@lrrr</p>
+</div>
+<div style="float:left;">
+<a href="tech.adroll.com">tech.adroll.com</a>
+<p>@AdRollDev</p>
+<p><a href="http://jobvite.com/m?3rKZMgwH">(we are hiring!)</a></p>
+</div>
+</div>
+</section>
+
+	</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

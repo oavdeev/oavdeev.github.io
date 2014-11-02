@@ -1,0 +1,24 @@
+rect#canvas_background {
+	display: none;
+}
+
+svg {
+	fill: white;
+	stroke: white;
+}
+
+path {
+	stroke: white;
+	fill: none;
+}
+line {
+	stroke: white;
+}
+rect {
+	stroke: white;
+	fill: none;
+}
+
+text {
+	fill: white;
+}

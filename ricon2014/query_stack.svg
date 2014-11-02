@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="svg.css" type="text/css"?>
+<svg width="580" height="400" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="#fff" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect stroke="#000" id="svg_1" height="39.999999" width="110" y="54" x="112.5" stroke-width="1.5" fill="#fff"/>
+  <path stroke="#000" transform="rotate(-180 168.20999145507812,109.71820068359374) " id="svg_2" d="m146.709991,109.681305l21.5,-15.463104l21.5,15.463104l-10.750458,0l0,15.536896l-21.5,0l0,-15.536896l-10.749542,0z" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="#fff"/>
+  <rect stroke="#000" id="svg_4" height="39.999999" width="110" y="126" x="112.5" stroke-width="1.5" fill="#fff"/>
+  <path stroke="#000" transform="rotate(-180 168.20999145507812,181.71820068359375) " id="svg_5" d="m146.709991,181.68129l21.5,-15.463089l21.5,15.463089l-10.750458,0l0,15.536911l-21.5,0l0,-15.536911l-10.749542,0z" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="#fff"/>
+  <rect stroke="#000" id="svg_6" height="39.999999" width="110" y="198" x="111.5" stroke-width="1.5" fill="#fff"/>
+  <path stroke="#000" transform="rotate(-180 167.20999145507815,253.71820068359375) " id="svg_7" d="m145.709991,253.68129l21.5,-15.463089l21.5,15.463089l-10.750458,0l0,15.536911l-21.5,0l0,-15.536911l-10.749542,0z" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="#fff"/>
+  <rect stroke="#000" id="svg_8" height="39.999999" width="110" y="270" x="111.5" stroke-width="1.5" fill="#fff"/>
+  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="16" id="svg_10" y="79" x="124.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">PostgreSQL</text>
+  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="16" id="svg_11" y="151" x="151.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">FDW</text>
+  <text style="cursor: move;" xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="16" id="svg_12" y="223" x="138.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Master</text>
+  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="16" id="svg_13" y="294" x="135.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Workers</text>
+  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="16" id="svg_14" y="47" x="242.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">SQL query</text>
+  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="16" id="svg_15" y="117" x="243.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Parsed query</text>
+  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="16" id="svg_16" y="186" x="244.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">HTTP API</text>
+  <text style="cursor: move;" xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="16" id="svg_17" y="294" x="246.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Python code</text>
+  <text xml:space="preserve" text-anchor="left" font-family="Helvetica, Arial, sans-serif" font-size="16" id="svg_18" y="294" x="368.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Native code</text>
+  <line stroke="#000" stroke-linecap="null" stroke-linejoin="null" id="svg_20" y2="99" x2="270.5" y1="56.999998" x1="270.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="none"/>
+  <line stroke="#000" stroke-linecap="null" stroke-linejoin="null" id="svg_21" y2="166" x2="270.5" y1="123.999998" x1="270.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="none"/>
+  <line stroke="#000" stroke-linecap="null" stroke-linejoin="null" id="svg_22" y2="274.000002" x2="270.5" y1="196.999996" x1="270.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_23" y2="289" x2="359.5" y1="289" x1="340.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+ </g>
+</svg>

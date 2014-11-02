@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<svg width="580" height="152" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+
+ <g>
+  <title>background</title>
+  <rect x="-1" y="-1" width="582" height="154" id="canvas_background" fill="#fff"/>
+  <g id="canvasGrid" display="none">
+   <rect id="svg_1" width="100%" height="100%" x="0" y="0" stroke-width="0" fill="url(#gridpattern)"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path fill="none" stroke="#000" stroke-width="1.5" stroke-opacity="null" fill-opacity="null" id="svg_2"/>
+  <rect stroke="#000" opacity="0.31" id="svg_5" height="138" width="208.999995" y="6" x="331.5" stroke-opacity="null" stroke-width="1.5" fill="#9ACEE6"/>
+  <g id="svg_3">
+   <text fill="#000000" stroke-width="0" stroke-opacity="null" fill-opacity="null" x="50.5" y="17" id="svg_4" font-size="12" font-family="'Courier New', Courier, monospace" text-anchor="left" xml:space="preserve" stroke="#000" font-weight="bold">country   site_id    network     size   user-agent</text>
+   <text fill="#000000" stroke-width="0" stroke-opacity="null" fill-opacity="null" x="50.5" y="31" id="svg_4" font-size="12" font-family="'Courier New', Courier, monospace" text-anchor="left" xml:space="preserve" stroke="#000" font-weight="bold">US        A3VF56        A        1202   Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us)</text>
+   <text fill="#000000" stroke-width="0" stroke-opacity="null" fill-opacity="null" x="50.5" y="46" id="svg_4" font-size="12" font-family="'Courier New', Courier, monospace" text-anchor="left" xml:space="preserve" stroke="#000" font-weight="bold">FR        BZ1HOP        B        421    Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Safari/535.19</text>
+   <text fill="#000000" stroke-width="0" stroke-opacity="null" fill-opacity="null" x="50.5" y="61" id="svg_4" font-size="12" font-family="'Courier New', Courier, monospace" text-anchor="left" xml:space="preserve" stroke="#000" font-weight="bold">US        BA113T        B        212    Mozilla/5.0 (Android; Mobile; rv:30.0) Gecko/30.0 Firefox/30.0</text>
+   <text fill="#000000" stroke-width="0" stroke-opacity="null" fill-opacity="null" x="50.5" y="76" id="svg_4" font-size="12" font-family="'Courier New', Courier, monospace" text-anchor="left" xml:space="preserve" stroke="#000" font-weight="bold">US        A3VF56        A        255    Mozilla/5.0 (iPad; CPU OS 7_0 like Mac OS X) AppleWebKit/537.51.1</text>
+   <text fill="#000000" stroke-width="0" stroke-opacity="null" fill-opacity="null" x="50.5" y="91" id="svg_4" font-size="12" font-family="'Courier New', Courier, monospace" text-anchor="left" xml:space="preserve" stroke="#000" font-weight="bold">UK        LG13IZ        B        1807   Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36</text>
+   <text fill="#000000" stroke-width="0" stroke-opacity="null" fill-opacity="null" x="50.5" y="106" id="svg_4" font-size="12" font-family="'Courier New', Courier, monospace" text-anchor="left" xml:space="preserve" stroke="#000" font-weight="bold">US        5ZCA9A        A        2301   Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.66 Safari/535.11</text>
+   <text fill="#000000" stroke-width="0" stroke-opacity="null" fill-opacity="null" x="50.5" y="121" id="svg_4" font-size="12" font-family="'Courier New', Courier, monospace" text-anchor="left" xml:space="preserve" stroke="#000" font-weight="bold">UK        BA113T        B        8458   Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Safari/535.19</text>
+   <text fill="#000000" stroke-width="0" stroke-opacity="null" fill-opacity="null" x="50.5" y="136" id="svg_4" font-size="12" font-family="'Courier New', Courier, monospace" text-anchor="left" xml:space="preserve" stroke="#000" font-weight="bold">FR        V7A3FA        B        3511   Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.11 (KHTML, like Gecko) Ubuntu/11.10 Chromium/17.0.963.65 Chrome/17.0.963.65 Safari/535.11</text>
+  </g>
+ </g>
+</svg>
