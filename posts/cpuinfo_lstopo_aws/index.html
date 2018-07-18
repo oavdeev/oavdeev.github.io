@@ -1,0 +1,121 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>Oleg Avdeev github pages</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="" />
+  <meta name="generator" content="Hugo 0.40.1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/">Oleg Avdeev github pages</a>
+            </h1>
+
+      <ul id="social-media">
+             
+      </ul>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>/proc/cpuinfo and CPU topology for every AWS instance type</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2018-07-16T20:08:49-07:00">Jul 16, 2018</time>
+        </li>
+        
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="/tags/aws/">#aws</a>
+                
+            </em>
+        </li>
+        
+
+        <li>0 min read</li>
+    </ul>
+</aside>
+    
+
+    <p>I grew tired of having to launch an instance to check a few CPU flags. So I figured, I&rsquo;ll just do it once and for all.</p>
+
+<p><a href="/static/lstopo.png"><img src="/static/lstopo.png" alt="i3.metal" /></a>
+</p>
+
+<p>Without further ado, <a href="https://instaguide.io">you can see the results here</a>. Click on instance type to see them. What&rsquo;s included:</p>
+
+<ul>
+<li>contents of <code>/proc/cpuinfo</code></li>
+<li><code>lstopo</code> output (cores, sockets, cpu caches, NUMA nodes). See the glorious i3.metal instance above.</li>
+<li><code>nvidia-smi</code> output for GPU instances</li>
+</ul>
+
+<h3 id="a-few-fun-things-i-learned-doing-this-in-no-particular-order">A few fun things I learned doing this, in no particular order:</h3>
+
+<ul>
+<li>AWS has whopping 113 instance types now across 27 families (82 types if you only include &ldquo;current generation&rdquo;).</li>
+<li>However, it wasn&rsquo;t as painful as I thought it would be, despite the variety of instances. You&rsquo;re generally good if using a recent enough AMI. The only issue I had is i3.metal wouldn&rsquo;t start with one of the old deep learning AMIs. It wasn&rsquo;t always that simple, for example, until recently you had to use <a href="https://aws.amazon.com/about-aws/whats-new/2017/10/announcing-new-aws-deep-learning-ami-for-amazon-ec2-p3-instances/">a special AMI for p3 instances</a>, and if you strayed from official path, had to make sure it supported ENA, SR-IOV among other things.</li>
+<li>Spot and <a href="https://aws.amazon.com/blogs/aws/new-ec2-spot-blocks-for-defined-duration-workloads/">spot block</a> markets are not perfectly aligned, sometimes there is capacity in one but not the other. You can save a few bucks knowing this.</li>
+<li>You can still launch one of decade-old m1 instance types! However, much newer hi1.4xlarge seems to have been silently deprecated.</li>
+<li>Instance limits are still a bit of a pain. If you&rsquo;re small time user on the lowest tier of support, it takes them a couple days to respond to a limit increase request. Moreover, if you want to use spot instances, there are <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-limits.html#spot-limits-general">separate per-instance spot limits</a>, that are not visible anywhere in the console.</li>
+<li>The total cost was on the order of $150, though I started this project before AWS switched to per second billing. Once they did that, it saved me quite a few bucks.</li>
+</ul>
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6> | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://oavdeev.github.io/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+</body>
+
+</html>

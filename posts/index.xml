@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Oleg Avdeev github pages</title>
+    <link>https://oavdeev.github.io/posts/</link>
+    <description>Recent content in Posts on Oleg Avdeev github pages</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 16 Jul 2018 20:08:49 -0700</lastBuildDate>
+    
+	<atom:link href="https://oavdeev.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>/proc/cpuinfo and CPU topology for every AWS instance type</title>
+      <link>https://oavdeev.github.io/posts/cpuinfo_lstopo_aws/</link>
+      <pubDate>Mon, 16 Jul 2018 20:08:49 -0700</pubDate>
+      
+      <guid>https://oavdeev.github.io/posts/cpuinfo_lstopo_aws/</guid>
+      <description>&lt;p&gt;I grew tired of having to launch an instance to check a few CPU flags. So I figured, I&amp;rsquo;ll just do it once and for all.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://oavdeev.github.io/static/lstopo.png&#34;&gt;&lt;img src=&#34;https://oavdeev.github.io/static/lstopo.png&#34; alt=&#34;i3.metal&#34; /&gt;&lt;/a&gt;
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
