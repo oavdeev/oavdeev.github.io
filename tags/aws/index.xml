@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>/proc/cpuinfo and CPU topology for every AWS instance type</title>
+      <title>/proc/cpuinfo and CPU topology for all 113 AWS instance types</title>
       <link>https://oavdeev.github.io/posts/cpuinfo_lstopo_aws/</link>
       <pubDate>Mon, 16 Jul 2018 20:08:49 -0700</pubDate>
       
