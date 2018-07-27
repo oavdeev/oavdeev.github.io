@@ -6,10 +6,22 @@
     <description>Recent content in Aws on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Jul 2018 20:08:49 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 25 Jul 2018 19:07:49 -0700</lastBuildDate>
     
 	<atom:link href="https://oavdeev.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>vPMU support on EC2 and a weird case of z1d instance family</title>
+      <link>https://oavdeev.github.io/posts/vpmu_support_z1d/</link>
+      <pubDate>Wed, 25 Jul 2018 19:07:49 -0700</pubDate>
+      
+      <guid>https://oavdeev.github.io/posts/vpmu_support_z1d/</guid>
+      <description>&lt;p&gt;As explained in great detail in &lt;a href=&#34;http://www.brendangregg.com/blog/2017-05-04/the-pmcs-of-ec2.html&#34;&gt;this post by Brendan Gregg&lt;/a&gt; Performance Monitoring Counters are an awesome way to measure performance on modern processors. You can get insight into things like branch mispredictions, cache misses and TLB performance. You can also do sampling based on these events in &lt;code&gt;perf&lt;/code&gt; (aka Precise Event Based Sampling/PEBS).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://oavdeev.github.io/static/arch_perfmon.png&#34;&gt;&lt;img src=&#34;https://oavdeev.github.io/static/arch_perfmon.png&#34; alt=&#34;arch_perfmon&#34; /&gt;&lt;/a&gt;
+&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>/proc/cpuinfo and CPU topology for all 113 AWS instance types</title>
