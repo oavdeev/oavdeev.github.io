@@ -1,0 +1,169 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title></title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  
+  <meta name="author" content="Oleg Avdeev" />
+  <meta name="generator" content="Hugo 0.61.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-122521927-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/"></a>
+            </h1>
+
+      <ul id="social-media">
+        
+        <li><a href="https://twitter.com/lrrr"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+         
+        <li><a href="https://www.linkedin.com/in/oavdeev/"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+         
+        <li><a href="https://github.com/oavdeev"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+      </ul>
+      
+      <p><a href="/"><h3>Oleg Avdeev || Blog</h3></a></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>vPMU support on EC2 and the weird case of z1d instance family</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2018-07-25T19:07:49-07:00">Jul 25, 2018</time>
+        </li>
+        
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="/tags/aws/">#aws</a>
+                
+            </em>
+        </li>
+        
+
+        <li>2 min read</li>
+    </ul>
+</aside>
+    
+
+    <p>As explained in great detail in <a href="http://www.brendangregg.com/blog/2017-05-04/the-pmcs-of-ec2.html">this post by Brendan Gregg</a> Performance Monitoring Counters are an awesome way to measure performance on modern processors. You can get insight into things like branch mispredictions, cache misses and TLB performance. You can also do sampling based on these events in <code>perf</code> (aka Precise Event Based Sampling/PEBS).</p>
+<p><a href="/static/arch_perfmon.png"><img src="/static/arch_perfmon.png" alt="arch_perfmon"></a></p>
+<p>Not too long ago, it wasn't possible to access this feature on EC2 instances (apparently, for security reasons). However, than situation have changed with the updates in 2016 to AWS XEN hypervisor, and with the roll out of the AWS Nitro hypervisor last year.</p>
+<p>As Brendan's blog post says, you can get acess to vPMU on dedicated hardware, when using the largest instance type. However, as I ran <a href="https://oavdeev.github.io/posts/cpuinfo_lstopo_aws/">my little /proc/cpuinfo experiment</a>, I found out that it is not the whole story.</p>
+<p>You can easily check for vPMU support by looking for <code>arch_perfmon</code> flag in <code>/proc/cpuinfo</code>. Here's the exhaustive list of instance types that have it as of today:</p>
+<pre><code>i3.metal
+c5.9xlarge
+c5.18xlarge
+m4.16xlarge
+m5.12xlarge
+m5.24xlarge
+r5.12xlarge
+r5.24xlarge
+f1.16xlarge
+h1.16xlarge
+i3.16xlarge
+p2.16xlarge
+p3.16xlarge
+r4.16xlarge
+x1.32xlarge
+c5d.9xlarge
+c5d.18xlarge
+m5d.12xlarge
+m5d.24xlarge
+r5d.12xlarge
+r5d.24xlarge
+x1e.32xlarge
+</code></pre><p>Looking at this list and <code>lstopo(1)</code> output, the rule is pretty clear: you get vPMU on largest types of instances running under &ldquo;Xen AWS 2017&rdquo; (using Brendan's <a href="http://www.brendangregg.com/blog/2017-11-29/aws-ec2-virtualization-2017.html">terms</a>). Then, on instances running on <a href="http://www.brendangregg.com/blog/2017-11-29/aws-ec2-virtualization-2017.html">Nitro hypervisor</a> you get vPMU on types that use entire processor socket/NUMA node and up. For example, <a href="https://instaguide.io/info.html?type=m5d.12xlarge">m5d.12xl</a> is only second largest in its family, yet it takes the entire socket, so you get vPMU support.</p>
+<p>Curiously, the newest <a href="https://aws.amazon.com/ec2/instance-types/z1d/">z1d family</a> doesn't have vPMU enabled at all, even though the largest type is two NUMA nodes and AWS says it runs on Nitro as well. The cores declare the same family/model as r5s, so it is unlikely there is some deep architectural reason (like, CPU bug) to disable it. Did it somehow get in the way of hardware design, while Intel and AWS were trying to squeeze as much per-core performance as possible? I know next to nothing about chip design, but I wouldn't imagine it taking much die space. Maybe Nitro required rushing a new release to run z1d, so they disabled vPMU support there temporarily?</p>
+<p>Anyway, at least we can enjoy having vPMU on these 22 types above. By the way, the cheapest way to play with hardware performance counters today is c5.9xlarge which is $0.55/hr as of today on spot market in Oregon and N.Virginia regions.</p>
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://oavdeev.github.io/posts/cpuinfo_lstopo_aws/"><i class="fa fa-chevron-circle-left"></i> /proc/cpuinfo and CPU topology for all 113 AWS instance types</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6> | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://oavdeev.github.io/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-122521927-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>
