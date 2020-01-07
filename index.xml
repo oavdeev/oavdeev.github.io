@@ -6,20 +6,10 @@
     <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Dec 2019 20:08:49 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 25 Jul 2018 19:07:49 -0700</lastBuildDate>
     
 	<atom:link href="https://oavdeev.github.io/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Latency distribution of N parallel tasks</title>
-      <link>https://oavdeev.github.io/posts/parallel_latency/</link>
-      <pubDate>Sun, 22 Dec 2019 20:08:49 -0700</pubDate>
-      
-      <guid>https://oavdeev.github.io/posts/parallel_latency/</guid>
-      <description>A common thing in any system is running a bunch of similar tasks. For example, to serve a request we need to read a number of enries from a database (so the &amp;ldquo;task&amp;rdquo; in this case is a database read).
-We typically have an idea how latency for a single task looks like. Being good engineers and caring about observability we likely measure average latency $ T_{avg} $ and things like p95/p99 quantiles and standard deviation $\sigma$ (maybe we even have opentracing instrumentation to measure those with).</description>
-    </item>
     
     <item>
       <title>vPMU support on EC2 and the weird case of z1d instance family</title>
