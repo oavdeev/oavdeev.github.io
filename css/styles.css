@@ -338,7 +338,7 @@ blockquote {
   background-color: #efefef;
   box-shadow: 0 -1px 0 #bbbbbb inset;
 }
-
+/*
 blockquote::before {
   content: "\f10d";
   font-size: 3em;
@@ -348,7 +348,7 @@ blockquote::before {
   left: 6px;
   top: 0;
 }
-
+*/
 @media only screen and (max-width: 800px) {
   blockquote {
     margin: 1em 0;
