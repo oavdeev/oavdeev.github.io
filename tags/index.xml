@@ -6,10 +6,19 @@
     <description>Recent content in Tags on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Jul 2018 19:07:49 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 07 Jan 2020 20:16:00 -0700</lastBuildDate>
     
 	<atom:link href="https://oavdeev.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>latency</title>
+      <link>https://oavdeev.github.io/tags/latency/</link>
+      <pubDate>Tue, 07 Jan 2020 20:16:00 -0700</pubDate>
+      
+      <guid>https://oavdeev.github.io/tags/latency/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>aws</title>

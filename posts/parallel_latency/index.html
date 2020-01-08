@@ -1,0 +1,197 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title></title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  
+  <meta name="author" content="Oleg Avdeev" />
+  <meta name="generator" content="Hugo 0.61.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"> </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]} })
+  </script>
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-122521927-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/"></a>
+            </h1>
+
+      <ul id="social-media">
+        
+        <li><a href="https://twitter.com/lrrr"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+         
+        <li><a href="https://www.linkedin.com/in/oavdeev/"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+         
+        <li><a href="https://github.com/oavdeev"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+      </ul>
+      
+      <p><a href="/"><h3>Oleg Avdeev || Blog</h3></a></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Latency distribution of N parallel tasks</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2020-01-07T20:16:00-07:00">Jan 7, 2020</time>
+        </li>
+        
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="/tags/latency/">#latency</a>
+                
+            </em>
+        </li>
+        
+
+        <li>3 min read</li>
+    </ul>
+</aside>
+    
+
+    <p>A common thing in any system is running a bunch of similar tasks. For
+example, to serve a request we need to read a number of enries from a database (so
+the &ldquo;task&rdquo; in this case is a database read).</p>
+<p>We typically have an idea how latency for a single task looks like. Being good
+engineers and caring about observability we likely measure average latency $ T_{avg} $ and things
+like p95/p99 quantiles and standard deviation $\sigma$ (maybe we even have <a href="https://opentracing.io/">opentracing</a>
+instrumentation to measure those with).</p>
+<p>But what would be overall latency of a request involving multiple identical tasks would look like?</p>
+<p><a href="https://observablehq.com/d/61c2d2a4393eee19">Here's the calculator</a> I've made that allows you to see the distribution given
+p95 and mininum latency of a single task. If you're looking for some rules of a thumb, read
+on.</p>
+<h3 id="sequential-tasks">Sequential tasks</h3>
+<p>If we run N identical tasks sequentially, it is not hard to imagine what will happen to the overall response latency if
+you remember the <a href="https://en.wikipedia.org/wiki/Central_limit_theorem">central limit theorem</a>.</p>
+<p><a href="/static/latency_sequential.png"><img src="/static/latency_sequential.png" alt="Sequential task latency"></a></p>
+<p>Regardless of what the latency distribution of one task is, overall latency will tend towards normal distribution for a large enough $N$.
+Average total latency for $N$ tasks executed sequentially will be close to $ T_{avg} \cdot N$ with the standard deviation of $\sigma\sqrt N$. So for
+quantile back-of-the-napkin math, we can use usual <a href="https://en.wikipedia.org/wiki/Standard_normal_table#Cumulative">z-score tables</a> for normal distribution, for example p95 will be around $1.65\cdot\sigma\sqrt N  $.</p>
+<p>Though it is still interesting to know what it'd be
+for small values of $N$, as it is likely that we'll encounter them in practice.</p>
+<h3 id="parallel-tasks">Parallel tasks</h3>
+<p>If these tasks don't depend on each other, we may run them all in parallel. Issue those
+database read requests simultaneously, wait for all of them to complete and return the results to the user.</p>
+<p>The changes in latency distribution are a little less intuitive. It makes sense that'd
+be worse than the individual task. As we run a bunch of them, with larger $N$
+there is an increasing chance that at least one of them will get unlucky and
+will take longer. And we have to wait for all of them before returning the response,
+so things will get worse, but how much worse?</p>
+<p>Here's how it looks like if the single task latency follows <a href="https://en.wikipedia.org/wiki/Chi-squared_distribution">chi-squared distribution</a>:</p>
+<p><a href="/static/latency_parallel.png"><img src="/static/latency_parallel.png" alt="Sequential task latency"></a></p>
+<p>Chi-squared is not the only choice, picked here simply because it is asymmetric, long-tailed and looks
+like <em>some</em> latency distributions I've measured in the wild. Above picture may look quite
+different for a different distribution.</p>
+<p>So we want to figure out if there is an easy way to compute quantiles for the entire request with $N$ tasks running
+in parallel under the hood. Ideally, without making too many assumptions about the shape of the underlying
+single-task distribution.</p>
+<p>Of course this doesn't sound like a particularly exotic problem. If you look at
+the wikipedia page on <a href="https://en.wikipedia.org/wiki/Order_statistic">order statistics</a>, someone did the math for us and there
+is a simple formula for the CDF of a maximum of $N$ iid random variables given
+a CDF of a single variable $F_X$:
+$$
+F_{X_{(n)}} = \max\{X_1,&hellip;,X_n\} = [F_X(x)]^n
+$$</p>
+<p>To find 95% quantile, since quantile function is the inverse of the
+CDF on the left, it would be $F_X^{-1}(0.95^{1/N})$, where
+$F_X^{-1}$ is the inverse CDF aka quantile function of the latency distribution <em>of a single task</em>.
+Or in other words:</p>
+<blockquote>
+<p>The $p$-th latency percentile for $N$ tasks running in parallel is equal to $p^{1/N}$-th latency percentile of a single task.</p>
+</blockquote>
+<p>For example, if we
+want to compute p95 of 5 tasks,  $0.95^{1/5} \approx 0.99$ so we just need to look up
+p99 value from the latency distribution of our single task, and that'd be p95 of five.</p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://oavdeev.github.io/posts/vpmu_support_z1d/"><i class="fa fa-chevron-circle-left"></i> vPMU support on EC2 and the weird case of z1d instance family</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6> | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://oavdeev.github.io/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-122521927-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

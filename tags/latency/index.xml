@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>latency on </title>
+    <link>https://oavdeev.github.io/tags/latency/</link>
+    <description>Recent content in latency on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Jan 2020 20:16:00 -0700</lastBuildDate>
+    
+	<atom:link href="https://oavdeev.github.io/tags/latency/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Latency distribution of N parallel tasks</title>
+      <link>https://oavdeev.github.io/posts/parallel_latency/</link>
+      <pubDate>Tue, 07 Jan 2020 20:16:00 -0700</pubDate>
+      
+      <guid>https://oavdeev.github.io/posts/parallel_latency/</guid>
+      <description>A common thing in any system is running a bunch of similar tasks. For example, to serve a request we need to read a number of enries from a database (so the &amp;ldquo;task&amp;rdquo; in this case is a database read).
+We typically have an idea how latency for a single task looks like. Being good engineers and caring about observability we likely measure average latency $ T_{avg} $ and things like p95/p99 quantiles and standard deviation $\sigma$ (maybe we even have opentracing instrumentation to measure those with).</description>
+    </item>
+    
+  </channel>
+</rss>
